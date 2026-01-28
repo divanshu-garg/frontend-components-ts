@@ -6,9 +6,10 @@ import { useAuth } from "../context/AuthContext";
 // but the Navbar owns the Button that triggers it.
 
 interface NavbarProps {
-    onMenuClick: () => void
+    onMenuClick: () => void,
+    sidebarOpen: boolean
 }
-const Navbar = ({ onMenuClick }:NavbarProps) => {
+const Navbar = ({ onMenuClick, sidebarOpen }:NavbarProps) => {
     const {user, logout} = useAuth()
     const onLogout = ()=> {
         logout();
@@ -19,7 +20,7 @@ const Navbar = ({ onMenuClick }:NavbarProps) => {
       <div className="flex items-center gap-3">
         <button 
           onClick={onMenuClick} 
-          className="p-1 -ml-1 text-gray-700 hover:bg-gray-100 rounded-md md:hidden"
+          className={`p-1 -ml-1 text-gray-700 hover:bg-gray-100 rounded-md ${sidebarOpen ? "hidden" : ""}`}
         >
           <Menu size={24} />
         </button>

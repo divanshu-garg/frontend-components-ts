@@ -1,4 +1,4 @@
-interface TableData {
+export interface TableData {
     id: string,
     customer: string,
     city: string,

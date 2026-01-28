@@ -29,8 +29,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             setIsLeftSidebarOpen((isLeftSidebarOpen) => !isLeftSidebarOpen)
           }
         />
-        <div className="flex-1 flex flex-col h-screen relative">
-          <Navbar onMenuClick={() => setIsLeftSidebarOpen(true)} />
+        <div className="flex-1 flex flex-col h-screen overflow-x-auto relative">
+          <Navbar onMenuClick={() => setIsLeftSidebarOpen(true)} sidebarOpen={isLeftSidebarOpen} />
         {/* PAGE CONTENT SLOT */}
         <main className="flex-1 overflow-y-auto">{children}</main>
 

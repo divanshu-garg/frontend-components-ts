@@ -11,14 +11,14 @@ import {
   User,
   X,
 } from "lucide-react";
-import SidebarItem, {type SidebarItemProps} from "./SidebarItem";
+import SidebarItem, { type SidebarItemProps } from "./SidebarItem";
 import { useNavigate } from "react-router-dom";
 
 // const items: SidebarItemProps[] = [
-const getSidebarItems = (navigate:(path:string)=> void):SidebarItemProps[] => [
+const getSidebarItems = (navigate: (path: string) => void): SidebarItemProps[] => [
   // LEVEL 1
-  { text: "Dashboard", icon: <LayoutDashboardIcon size={20} />, onClick: ()=> navigate("/") },
-  { text: "Data Table", icon: <Table size={20} />, onClick: ()=> navigate("/data") },
+  { text: "Dashboard", icon: <LayoutDashboardIcon size={20} />, onClick: () => navigate("/") },
+  { text: "Data Table", icon: <Table size={20} />, onClick: () => navigate("/data") },
   // LEVEL 1
   {
     text: "Teams",
@@ -51,16 +51,23 @@ const getSidebarItems = (navigate:(path:string)=> void):SidebarItemProps[] => [
 ];
 
 interface LeftSidebarProps {
-    isOpen: boolean;
-    onClose: () => void
+  isOpen: boolean;
+  onClose: () => void
 }
 
-const LeftSidebar = ({ isOpen, onClose }:LeftSidebarProps) => {
+const LeftSidebar = ({ isOpen, onClose }: LeftSidebarProps) => {
   const navigate = useNavigate();
   const items = getSidebarItems(navigate);
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 flex w-64 bg-white border-r h-screen flex-col transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0`}
+      className={`
+    fixed inset-y-0 left-0 z-40 w-64 h-screen bg-white border-r flex flex-col 
+    transition-all duration-300 
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        md:relative 
+    md:translate-x-0 
+    ${isOpen ? "md:ml-0" : "md:-ml-64"}
+  `}
     >
       {/* LOGO */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
@@ -70,7 +77,7 @@ const LeftSidebar = ({ isOpen, onClose }:LeftSidebarProps) => {
           className="w-auto h-12 object-contain"
         />
 
-        <button onClick={onClose} className="md:hidden text-gray-500">
+        <button onClick={onClose} className="text-gray-500">
           <X size={24} />
         </button>
       </div>
